@@ -11,30 +11,57 @@
 
 <body>
 
-<h1 data-ng-reply="Hello back!">Hello World!</h1>
 
 <div data-ng-controller="mainController">
 
-  <form name="myForm">
+  <div>
+    <label>What is your twitter handle?</label>
+    <input type="text" data-ng-model="handle" />
+
+    <hr />
+    <h1>twitter.com/{{ lowercaseHandle() }}</h1>
+  </div>
+
+
+  <!-- <h1>Hello {{ name + '. How are you?' }}</h1> -->
+
+  <!-- Example showing ngResource module and service for validations. -->
+  <!-- <form name="myForm">
     <input type="text" ng-model="field" name="myField" required minlength="5" />
     <div ng-messages="myForm.myField.$error">
       <div ng-message="required">You did not enter a field</div>
       <div ng-message="minlength">The value entered is too short</div>
     </div>
-  </form>
+  </form> -->
 
 </div>
 
 <script type="text/javascript">
-  var myApp = angular.module('myApp', ['ngMessages', 'ngResource']);
+  var myApp = angular.module('myApp', []);
 
-  myApp.controller('mainController', function($scope, $log, $filter, $resource) {
+  myApp.controller('mainController', ['$scope', '$filter', function($scope, $filter) {
 
-    $scope.name = 'John';
-    $scope.formattedName = $filter('uppercase')($scope.name);
+    $scope.handle = '';
 
-    $log.info($scope.name);
-    $log.info($scope.formattedName);
+    $scope.lowercaseHandle = function() {
+      return $filter('lowercase')($scope.handle);
+    };
+
+    // $scope.name = 'Tony';
+
+    // $timeout(function() {
+
+    //   $scope.name = 'Everybody';
+
+    // }, 3000);
+
+
+    // Example demonstrating services.
+    // $scope.name = 'John';
+    // $scope.formattedName = $filter('uppercase')($scope.name);
+
+    // $log.info($scope.name);
+    // $log.info($scope.formattedName);
 
     // Example demonstrating the log service.
     // $log.log('Hello.');
@@ -42,7 +69,7 @@
     // $log.warn('Warning!');
     // $log.debug('Some debug information while writing my code.');
     // $log.error('This was an error!!!');
-  });
+  }]);
 
   // Example demonstrating Scope
   // console.log(angular.injector().annotate(searchPeople));
