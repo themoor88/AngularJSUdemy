@@ -14,14 +14,56 @@
 
 <div data-ng-controller="mainController">
 
-  <div>
+  <h1>{{ name }}</h1>
+
+</div>
+
+<div data-ng-controller="secondController">
+
+  <h3>{{ name }}</h3>
+
+</div>
+
+
+  <!-- <input type="button" value="Click me" data-ng-click="alertClick()" />
+
+  <br />
+
+  <div data-ng-cloak="">{{ name }}</div>
+
+
+ -->
+
+<!--
+  Add Rule: <input type="text" data-ng-model="newRule" /><input type="button" value="Add" data-ng-click="addRule()" /> -->
+  <!-- <div>
     <label>What is your twitter handle?</label>
     <input type="text" data-ng-model="handle" />
 
+    <div class="alert" data-ng-class= "{ 'alert-warning': handle.length < characters, 'alert-danger': handle.length > characters }" data-ng-show="handle.length !== characters">
+
+      <div data-ng-show="handle.length < characters">
+        You have less than 5 characters!
+      </div>
+
+      <div data-ng-show="handle.length > characters">
+        You have more than 5 characters!
+      </div>
+
+    </div>
+
     <hr />
     <h1>twitter.com/{{ lowercaseHandle() }}</h1>
-  </div>
 
+    <h3>Rules</h3>
+    <ul>
+      <li data-ng-repeat="rule in rules">
+        {{ rule.rulename }}
+      </li>
+    </ul>
+
+  </div>
+ -->
 
   <!-- <h1>Hello {{ name + '. How are you?' }}</h1> -->
 
@@ -34,20 +76,75 @@
     </div>
   </form> -->
 
-</div>
 
 <script type="text/javascript">
   var myApp = angular.module('myApp', []);
 
-  myApp.controller('mainController', ['$scope', '$filter', function($scope, $filter) {
+  myApp.controller('mainController', ['$scope', function($scope) {
 
-    $scope.handle = '';
+    $scope.name = 'Main';
 
-    $scope.lowercaseHandle = function() {
-      return $filter('lowercase')($scope.handle);
-    };
+  }]);
 
-    // Example showing the Watches, Digest Loop and Angular context.
+  myApp.controller('secondController', ['$scope', function($scope) {
+
+    $scope.name = 'Second';
+
+  }]);
+
+
+
+
+
+    // Making AJAX requests using Angular's wrapper.
+    // $http.get('/api')
+    //   .success(function(data) {
+    //     $scope.rules = data;
+    //   })
+    //   .error(function(data, status) {
+    //     console.log(data);
+    //   });
+
+    //   $scope.newRule = '';
+    //   $scope.addRule = function() {
+    //     $http.post('/api', { newRule: $scope.newRule })
+    //       .success(function(data) {
+    //         $scope.rules = data;
+    //         $scope.newRule = '';
+    //       })
+    //       .error(function(data) {
+    //         console.log(data);
+    //       });
+    //     };
+
+    // Requesting data using the XMLHttpRequest Object
+    // var rulesrquest = new XMLHttpRequest();
+
+    // rulesrquest.onreadystatechange = function() {
+
+    //   $scope.$apply(function () {
+    //     if (rulesrquest.readyState == 4 && rulesrquest.status == 200) {
+    //       $scope.rules = JSON.parse(rulesrquest.responseText);
+    //     }
+    //   });
+    // };
+
+    // rulesrquest.open('GET', "http://localhost.com:3000", true);
+    // rulesrquest.send();
+
+
+
+    // $scope.rules = [
+
+    //   { rulename: "Must be 5 characters" },
+    //   { rulename: "Must be used elsewhere" },
+    //   { rulename: "Must be cool" }
+
+    // ];
+
+    // console.log($scope.rules);
+
+    // Example showing the Watchers, Digest Loop and Angular context.
     // $scope.$watch('handle', function(newValue, oldValue) {
 
     //   console.info('Changed!');
@@ -84,7 +181,7 @@
     // $log.warn('Warning!');
     // $log.debug('Some debug information while writing my code.');
     // $log.error('This was an error!!!');
-  }]);
+
 
   // Example demonstrating Scope
   // console.log(angular.injector().annotate(searchPeople));
