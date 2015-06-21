@@ -110,21 +110,25 @@
   });
 
   myApp.controller('mainController', ['$scope', '$location', '$log', 'nameService', function($scope, $location, $log, nameService) {
-    $scope.name = nameService.name;
 
-    $scope.$watch('name', function() {
-      nameService.name = $scope.name;
-    });
 
   }]);
 
   myApp.controller('secondController', ['$scope', '$location', '$routeParams', '$log', function($scope, $location, $routeParams, $log) {
-    $scope.message = 'This is the second.'
-    $scope.num = $routeParams.num || 1;
+
+
   }]);
 
 
 
+  myApp.directive('searchResult', function(){
+    return {
+      restrict: 'AECM',
+      templateUrl: 'directives/searchresult.html',
+      replace: true
+      // So the directive is completely replaced with the template.
+    }
+  });
 
   // myApp.controller('secondController', ['$scope', function($scope) {
 
