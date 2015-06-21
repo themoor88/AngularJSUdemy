@@ -111,6 +111,9 @@
 
   myApp.controller('mainController', ['$scope', '$location', '$log', 'nameService', function($scope, $location, $log, nameService) {
 
+    $scope.formattedAddress = function() {
+
+    };
 
   }]);
 
@@ -125,8 +128,12 @@
     return {
       restrict: 'AECM',
       templateUrl: 'directives/searchresult.html',
-      replace: true
+      replace: true,
       // So the directive is completely replaced with the template.
+      scope: {
+        personObjectVar: '=',
+        formattedAddressFunction: '&'
+      }
     }
   });
 
