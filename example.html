@@ -16,7 +16,7 @@
   <li><a href="#/second">Second</a></li>
 </ul>
 
-<div data-ng-view=""></div>
+<div data-ng-view></div>
 
 
 
@@ -92,7 +92,7 @@
         templateUrl: 'pages/main.html',
         controller: 'mainController'
       })
-      .when('/second', {
+      .when('/second/:num', {
         templateUrl: 'pages/second.html',
         controller: 'secondController'
       })
@@ -103,11 +103,12 @@
 
 
   myApp.controller('mainController', ['$scope', '$location', '$log', function($scope, $location, $log) {
-
+    $scope.message = 'This is the main.'
   }]);
 
-  myApp.controller('secondController', ['$scope', '$location', '$log', function($scope, $location, $log) {
-
+  myApp.controller('secondController', ['$scope', '$location', '$routeParams', '$log', function($scope, $location, $routeParams, $log) {
+    $scope.message = 'This is the second.'
+    $scope.num = $routeParams.num || 1;
   }]);
 
 
