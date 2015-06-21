@@ -4,7 +4,9 @@
 <h3>Search Results</h3>
 
 
-<search-result  person-object="person" formatted-address-function="formattedAddress(aperson)"></search-result>
+<div class="list">
+<search-result  person-object="person" formatted-address-function="formattedAddress(aperson)" data-ng-repeat="person in people"></search-result>
+</div>
 <!-- E -->
 <div search-result></div>
 <!-- A -->
